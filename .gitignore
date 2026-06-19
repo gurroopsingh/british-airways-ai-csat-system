@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.env
+
+# Datasets and processed data
+*.csv
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Saved Models
+*.joblib
+*.safetensors
+models/csat_prediction/saved_models/*
+models/topic_modeling/saved_models/*
+!models/csat_prediction/saved_models/.gitkeep
+!models/topic_modeling/saved_models/.gitkeep
+
+# System files
+.DS_Store
+Thumbs.db
