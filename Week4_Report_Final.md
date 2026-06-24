@@ -25,13 +25,12 @@
 <div class="page-break"></div>
 
 <h1 id="introduction">1. Introduction</h1>
-<p>
-Week 4 focuses on developing the backend services necessary to expose the core machine learning and generative AI functionalities to end-users. The objective is to build a highly scalable, event-driven backend utilizing AWS Lambda and Amazon API Gateway to process customer reviews in real-time.
+Week 4 focuses on developing the backend services necessary to expose the core machine learning and generative AI functionalities to end-users. The objective is to build a scalable, event-driven backend utilizing AWS Lambda and Amazon API Gateway to process customer reviews in real-time.
 </p>
 
 <h1 id="serverless-architecture">2. Serverless Architecture Overview</h1>
 <p>
-The backend of the British Airways AI System is fully serverless. This architecture ensures automatic scaling to handle fluctuating volumes of customer feedback, high availability, and significant cost efficiency, as compute resources are strictly utilized on-demand when a review is submitted.
+The backend of the British Airways AI System is fully serverless. This architecture provides automatic scaling to handle fluctuating volumes of customer feedback, high availability, and cost efficiency, as compute resources are strictly utilized on-demand when a review is submitted.
 </p>
 
 <h1 id="lambda-functions">3. AWS Lambda Functions Implementation</h1>
@@ -41,7 +40,7 @@ Three distinct AWS Lambda functions were implemented to orchestrate specific seg
 <ul>
     <li><strong>Sentiment Lambda</strong>: Analyzes raw review text to calculate compound scores and determine the polarity (Positive, Neutral, Negative).</li>
     <li><strong>Predict Lambda</strong>: Dynamically loads the serialized vectorizer and machine learning models from Amazon S3 to generate a CSAT score (1 to 5) based on the text input.</li>
-    <li><strong>Recommend Lambda</strong>: Communicates with Amazon Bedrock to return actionable, personalized recovery recommendations based on the sentiment and detected issue.</li>
+    <li><strong>Recommend Lambda</strong>: Designed to integrate with Amazon Bedrock to generate personalized recovery recommendations based on the sentiment and detected issue.</li>
 </ul>
 
 <img src="screenshots/aws_lambda_functions.png" alt="AWS Lambda Functions List">
@@ -89,5 +88,9 @@ The APIs were thoroughly tested to ensure robust payload parsing, correct error 
 Week 4 successfully delivered the core backend processing logic through AWS Lambda and API Gateway. The serverless infrastructure is fully functional, thoroughly tested, and integrated with CloudWatch for observability. This establishes the necessary APIs to power the final generative AI and interactive dashboard workflows.
 </p>
 <p>
-<strong>GitHub Repository:</strong> <a href="https://github.com/gurroopsingh/british-airways-ai-csat-system">https://github.com/gurroopsingh/british-airways-ai-csat-system</a>
-</p>
+<h1 id="references">9. References</h1>
+<ul>
+    <li>AWS Documentation: <a href="https://docs.aws.amazon.com/">https://docs.aws.amazon.com/</a></li>
+    <li>Streamlit Documentation: <a href="https://docs.streamlit.io/">https://docs.streamlit.io/</a></li>
+    <li>GitHub Repository: <a href="https://github.com/gurroopsingh/british-airways-ai-csat-system">https://github.com/gurroopsingh/british-airways-ai-csat-system</a></li>
+</ul>

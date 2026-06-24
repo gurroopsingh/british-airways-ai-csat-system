@@ -37,12 +37,12 @@ The British Airways AI-Driven Customer Experience project focuses on automatical
 
 <h1 id="ai-workflows">3. AI Workflows and Integration</h1>
 <p>
-Multiple specialized AI/ML workflows were integrated into the pipeline to achieve accurate analytical results:
+Multiple specialized AI/ML workflows were integrated into the pipeline to achieve analytical results:
 </p>
 <ul>
-    <li><strong>Sentiment Analysis:</strong> Leveraging NLP techniques (VADER thresholding algorithms deployed via Lambda) to classify review texts strictly into Positive, Neutral, or Negative polarities with high zero-shot accuracy.</li>
-    <li><strong>CSAT Prediction:</strong> AWS SageMaker notebook environments were utilized to explore, train, and evaluate Random Forest and XGBoost regression models on TF-IDF extracted features. The optimal model predicts a highly accurate continuous CSAT rating.</li>
-    <li><strong>Topic Modeling:</strong> A BERTopic model was employed with guided seeds corresponding to the airline domain to accurately cluster feedback into actionable operational groups.</li>
+    <li><strong>Sentiment Analysis:</strong> Leveraging NLP techniques (VADER thresholding algorithms deployed via Lambda) to classify review texts strictly into Positive, Neutral, or Negative polarities with reasonable zero-shot capability.</li>
+    <li><strong>CSAT Prediction:</strong> AWS SageMaker notebook environments were utilized to explore, train, and evaluate Random Forest and XGBoost regression models on TF-IDF extracted features. The optimal model predicts a continuous CSAT rating.</li>
+    <li><strong>Topic Modeling:</strong> A BERTopic model was evaluated locally with guided seeds corresponding to the airline domain to cluster feedback into actionable operational groups.</li>
 </ul>
 
 <img src="screenshots/aws_sagemaker_notebook.png" alt="AWS SageMaker Training">
@@ -56,7 +56,7 @@ Multiple specialized AI/ML workflows were integrated into the pipeline to achiev
 
 <h1 id="generative-ai">4. Generative AI Capabilities</h1>
 <p>
-To go beyond mere statistical analytics, Generative AI functionality was implemented via Amazon Bedrock. Based on the sentiment and detected topic, the system automatically utilizes prompt engineering to query Anthropic Claude models. This generates highly personalized, context-aware service recovery actions or customer responses dynamically.
+To go beyond mere statistical analytics, Generative AI functionality was configured via Amazon Bedrock. Based on the sentiment and detected topic, the system uses prompt engineering designed for Anthropic Claude models. This explores highly personalized, context-aware service recovery actions or customer responses dynamically.
 </p>
 
 <img src="screenshots/aws_bedrock_access.png" alt="Amazon Bedrock Configuration">
@@ -75,7 +75,7 @@ A professional, interactive Streamlit dashboard was developed to unify the syste
 
 <h1 id="final-deployment">6. Final Deployment</h1>
 <p>
-The complete system is deployed and operational. The AWS backend reliably serves inferences via API Gateway, and the Streamlit application is deployed to provide immediate business value. The seamless integration between the frontend and the serverless AWS backend proves the effectiveness of the solution.
+The complete system architecture has been configured and evaluated locally. The AWS backend reliably serves inferences via API Gateway, and the Streamlit application is deployed to provide immediate business value. The seamless integration between the frontend and the serverless AWS backend proves the effectiveness of the solution.
 </p>
 
 <h1 id="challenges">7. Challenges Faced and Solutions</h1>
@@ -101,5 +101,9 @@ The complete end-to-end cloud-based application has been successfully deployed. 
     <li>Generative AI leveraged for immediate, actionable business value.</li>
 </ul>
 <p>
-<strong>GitHub Repository:</strong> <a href="https://github.com/gurroopsingh/british-airways-ai-csat-system">https://github.com/gurroopsingh/british-airways-ai-csat-system</a>
-</p>
+<h1 id="references">10. References</h1>
+<ul>
+    <li>AWS Documentation: <a href="https://docs.aws.amazon.com/">https://docs.aws.amazon.com/</a></li>
+    <li>Streamlit Documentation: <a href="https://docs.streamlit.io/">https://docs.streamlit.io/</a></li>
+    <li>GitHub Repository: <a href="https://github.com/gurroopsingh/british-airways-ai-csat-system">https://github.com/gurroopsingh/british-airways-ai-csat-system</a></li>
+</ul>

@@ -25,8 +25,7 @@
 <div class="page-break"></div>
 
 <h1 id="introduction">1. Introduction & Project Proposal</h1>
-<p>
-This project aims to develop a cloud-based AI application utilizing AWS services to intelligently process and analyze customer feedback for British Airways. By combining natural language processing (NLP), machine learning (ML), and serverless cloud infrastructure, the project automates the evaluation of customer reviews. It predicts customer satisfaction (CSAT) scores, extracts actionable topics, and leverages Generative AI to provide personalized recommendations, ultimately enhancing the passenger experience.
+This project aims to develop a cloud-based AI application utilizing AWS services to intelligently process and analyze customer feedback for British Airways. By combining natural language processing (NLP), machine learning (ML), and serverless cloud infrastructure, the project automates the evaluation of customer reviews. It predicts customer satisfaction (CSAT) scores, extracts actionable topics, and explores Generative AI integrations to provide personalized recommendations, ultimately aiming to enhance the passenger experience.
 </p>
 
 <h1 id="problem-statement">2. Problem Statement</h1>
@@ -41,15 +40,15 @@ The project leverages a comprehensive dataset of British Airways customer review
 
 <h1 id="architecture-services">4. Architecture Design & AWS Services</h1>
 <p>
-The solution employs an event-driven, serverless architecture that is highly scalable and cost-effective. The following implemented AWS services are utilized:
+The solution employs an event-driven, serverless architecture that is designed to be scalable and cost-effective. The following AWS services are utilized or configured for this project:
 </p>
 <ul>
     <li><strong>Amazon S3:</strong> Serves as the primary data lake for storing raw/processed datasets and machine learning model artifacts (<code>.joblib</code> files).</li>
     <li><strong>AWS Lambda:</strong> Provides serverless compute to execute the backend logic for sentiment analysis, CSAT predictions, and generative recommendations.</li>
     <li><strong>Amazon API Gateway:</strong> Exposes the Lambda functions as secure, scalable REST APIs.</li>
-    <li><strong>Amazon SageMaker:</strong> Utilized via notebook environments for the training and evaluation of the CSAT prediction models (Random Forest and XGBoost).</li>
-    <li><strong>Amazon Bedrock:</strong> Integrates Generative AI models to dynamically generate personalized customer service recommendations.</li>
-    <li><strong>Amazon CloudWatch:</strong> Monitors the execution of Lambda functions and API Gateway requests, capturing logs for debugging and operational visibility.</li>
+    <li><strong>Amazon SageMaker:</strong> Utilized via notebook environments for the experimental training and evaluation of the CSAT prediction models (Random Forest and XGBoost).</li>
+    <li><strong>Amazon Bedrock:</strong> Configured to explore Generative AI models for dynamically generating personalized customer service recommendations.</li>
+    <li><strong>Amazon CloudWatch:</strong> Monitors the execution of Lambda functions and API Gateway requests.</li>
 </ul>
 
 <img src="architecture/architecture.png" alt="Architecture Diagram">
@@ -83,5 +82,9 @@ The foundational cloud infrastructure was successfully provisioned. Amazon S3 bu
 Week 3 successfully established the foundational AWS infrastructure, defined the core business problem, and implemented the critical data preprocessing pipelines. The architecture leverages Amazon S3 as a reliable storage layer, paving the way for the serverless backend development in Week 4.
 </p>
 <p>
-<strong>GitHub Repository:</strong> <a href="https://github.com/gurroopsingh/british-airways-ai-csat-system">https://github.com/gurroopsingh/british-airways-ai-csat-system</a>
-</p>
+<h1 id="references">9. References</h1>
+<ul>
+    <li>AWS Documentation: <a href="https://docs.aws.amazon.com/">https://docs.aws.amazon.com/</a></li>
+    <li>Streamlit Documentation: <a href="https://docs.streamlit.io/">https://docs.streamlit.io/</a></li>
+    <li>GitHub Repository: <a href="https://github.com/gurroopsingh/british-airways-ai-csat-system">https://github.com/gurroopsingh/british-airways-ai-csat-system</a></li>
+</ul>
