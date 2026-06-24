@@ -4,65 +4,65 @@
 British Airways processes thousands of customer reviews and feedback forms daily. Manually analyzing these reviews to assess customer satisfaction, identify recurring issues, and provide timely recommendations is slow and inefficient. Without an automated, intelligent system, addressing specific customer pain points (like flight delays, baggage handling, or customer service issues) takes too long, leading to a negative customer experience.
 
 ## Solution Overview
-This project provides an AI-powered, end-to-end serverless architecture designed for British Airways to automatically analyze customer reviews. The system pre-processes the data, extracts sentiment, predicts a Customer Satisfaction (CSAT) score, models recurring topics using BERTopic, and generates personalized recommendations. A comprehensive Streamlit dashboard allows British Airways staff to view live analytics and run manual predictions. The solution is designed around AWS cloud services and is fully deployable.
+This project provides an AI-powered, end-to-end serverless architecture designed for British Airways to automatically analyze customer reviews. The system pre-processes the data, extracts sentiment using VADER, predicts a Customer Satisfaction (CSAT) score, models recurring topics, and explores Generative AI for personalized recommendations via Amazon Bedrock. A comprehensive Streamlit dashboard allows British Airways staff to view live analytics and run manual predictions. The solution is designed around AWS cloud services and is fully deployable.
 
 ## Dataset
 The dataset consists of British Airways customer reviews stored in a CSV file (`british_airways_reviews.csv`). The pipeline automatically detects the dataset in the root directory, identifies the relevant text columns, and applies rigorous NLP preprocessing techniques including lowercase conversion, punctuation removal, tokenization, stopword removal, and lemmatization.
 
 ## Features
 1. **Automated NLP Preprocessing**: Dynamically cleans raw review text data.
-2. **Sentiment Analysis**: Uses VADER (and optionally DistilBERT) to categorize reviews into Positive, Neutral, or Negative.
-3. **CSAT Prediction**: Utilizes a trained Random Forest / XGBoost regressor model with TF-IDF features to predict a synthetic CSAT rating (1 to 5).
-4. **Topic Modeling**: Leverages BERTopic to extract key themes such as Flight Delays, Baggage Handling, Food Quality, Seat Comfort, and Customer Service.
-5. **Recommendation Engine**: Generates rule-based or generative AI (Amazon Bedrock) personalized recommendations based on the detected topic and sentiment.
+2. **Sentiment Analysis**: Uses VADER thresholding on compound scores for polarity detection (Positive, Neutral, Negative).
+3. **CSAT Prediction**: Utilizes a trained Random Forest / XGBoost regressor model with TF-IDF features to predict a CSAT rating (1 to 5).
+4. **Topic Modeling**: Evaluates BERTopic with guided seeds to extract key themes such as Flight Delays, Baggage Handling, Food Quality, Seat Comfort, and Customer Service.
+5. **Recommendation Engine**: Designed to integrate with Amazon Bedrock (Anthropic Claude) for generating personalized recommendations based on the detected topic and sentiment.
 6. **Streamlit Dashboard**: A professional dark-themed UI built with Plotly to visualize sentiment distribution, CSAT scores, and common issues.
 7. **REST APIs**: FastAPI backend exposing endpoints for sentiment, prediction, and recommendations.
-8. **Serverless Deployment Ready**: Contains AWS Lambda and DynamoDB handler implementations.
+8. **Serverless Deployment**: Contains AWS Lambda function implementations for each API endpoint.
 
 ## Architecture
 ```text
 British Airways Reviews Dataset
-↓
-Data Preprocessing
-↓
-Sentiment Analysis (Comprehend/BERT)
-↓
-Customer Satisfaction Prediction (SageMaker)
-↓
-Topic Modeling (BERTopic/LDA)
-↓
-Recommendation Engine (Bedrock)
-↓
+        ↓
+Data Preprocessing (NLP Pipeline)
+        ↓
+Sentiment Analysis (VADER via Lambda)
+        ↓
+Customer Satisfaction Prediction (SageMaker Notebook → Lambda)
+        ↓
+Topic Modeling (BERTopic)
+        ↓
+Recommendation Engine (Bedrock — Explored)
+        ↓
 AWS Lambda + API Gateway
-↓
-DynamoDB
-↓
+        ↓
 Streamlit Dashboard
 ```
 
 ## AWS Services Used
-- **Amazon S3**: For storing raw/processed datasets and model artifacts.
-- **Amazon SageMaker**: For training and hosting the CSAT prediction model.
-- **AWS Lambda**: Serverless compute for sentiment, predict, and recommend endpoints.
-- **API Gateway**: To expose Lambda functions as RESTful APIs.
-- **Amazon DynamoDB**: NoSQL database for storing processed reviews and predictions.
-- **Amazon Comprehend**: For managed sentiment analysis (alternative to VADER).
-- **Amazon Bedrock**: For generating Generative AI based personalized recommendations.
+| Service | Purpose |
+|---------|---------|
+| **Amazon S3** | Data lake for raw/processed datasets and serialized model artifacts (`.joblib`) |
+| **AWS Lambda** | Serverless compute for sentiment, predict, and recommend endpoints |
+| **Amazon API Gateway** | Exposes Lambda functions as RESTful APIs |
+| **Amazon SageMaker** | Notebook environment for model training and evaluation |
+| **Amazon Bedrock** | Configured to explore Generative AI for recommendation generation |
+| **Amazon CloudWatch** | Monitoring and logging for Lambda function execution |
+| **Streamlit** | Interactive frontend dashboard for live analytics |
 
-*Note: The current codebase contains integration placeholders and local fallback logic to allow the project to be fully runnable locally without active AWS credentials.*
+> **Note:** The codebase contains local fallback logic to allow the project to be fully runnable locally without active AWS credentials.
 
 ## Installation
 
-1. Clone the repository and navigate to the project directory:
+1. Clone the repository:
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/gurroopsingh/british-airways-ai-csat-system.git
    cd british-airways-ai-csat-system
    ```
 
 2. Create a virtual environment and activate it:
    ```bash
    python -m venv venv
-   source venv/bin/activate  # On Windows: venv\\Scripts\\activate
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
 3. Install the required dependencies:
@@ -95,6 +95,9 @@ Streamlit Dashboard
 ## Folder Structure
 ```
 british-airways-ai-csat-system/
+├── architecture/
+│   └── architecture.png
+├── screenshots/
 ├── data/
 │   ├── raw/
 │   ├── processed/
@@ -122,20 +125,33 @@ british-airways-ai-csat-system/
 │   ├── 03_csat_prediction.ipynb
 │   ├── 04_topic_modeling.ipynb
 │   └── 05_recommendation_engine.ipynb
-├── architecture/
-├── screenshots/
+├── Week3_Report_Final.pdf
+├── Week4_Report_Final.pdf
+├── Week5_Report_Final.pdf
+├── British_Airways_Premium_Presentation.pptx
 ├── requirements.txt
-├── README.md
-└── main.py
+├── main.py
+└── README.md
 ```
 
 ## Model Performance
 - **Sentiment Analysis**: Uses VADER thresholding on compound scores for robust, zero-shot polarity detection.
-- **CSAT Prediction**: Automatically evaluates both Random Forest and XGBoost (if installed) using TF-IDF features. Performance metrics (MAE, RMSE, R²) are calculated and logged during the training phase.
-- **Topic Modeling**: Employs BERTopic with guided seeds for domain-specific accuracy (flight, baggage, food, seat, service).
+- **CSAT Prediction**: Evaluates both Random Forest and XGBoost (if installed) using TF-IDF features. Performance metrics (MAE, RMSE, R²) are calculated and logged during the training phase.
+- **Topic Modeling**: Employs BERTopic with guided seeds for domain-specific clustering (flight, baggage, food, seat, service).
+
+## Deliverables
+- `Week3_Report_Final.pdf` — Infrastructure Setup Report
+- `Week4_Report_Final.pdf` — Backend and Serverless Development Report
+- `Week5_Report_Final.pdf` — AI Service Integration and Generative AI Report
+- `British_Airways_Premium_Presentation.pptx` — Conference-style Presentation
 
 ## Future Enhancements
 - **Full AWS Deployment**: Provision AWS infrastructure using Terraform or AWS CDK.
-- **Amazon Bedrock LLM Integration**: Fully integrate the placeholder recommendation engine with Anthropic Claude v2 via Bedrock to replace rule-based logic.
+- **Amazon Bedrock LLM Integration**: Fully integrate the recommendation engine with Anthropic Claude via Bedrock.
 - **Advanced MLOps**: Migrate local model training to AWS SageMaker Pipelines with continuous model monitoring.
-- **Real-Time Streaming**: Stream live tweets and reviews through Amazon Kinesis directly to the Lambda backend.
+- **Real-Time Streaming**: Stream live reviews through Amazon Kinesis directly to the Lambda backend.
+
+## References
+- [AWS Documentation](https://docs.aws.amazon.com/)
+- [Streamlit Documentation](https://docs.streamlit.io/)
+- [GitHub Repository](https://github.com/gurroopsingh/british-airways-ai-csat-system)
